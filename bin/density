@@ -1,0 +1,41 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Finder\Finder;
+use Vantoozz\Density\Defaults;
+use Vantoozz\Density\DensityCommand;
+use Vantoozz\Density\DensityMeter;
+use Vantoozz\Density\Metadata;
+
+$loaded = false;
+
+foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php'] as $file) {
+    if (file_exists($file)) {
+        require_once $file;
+        $loaded = true;
+        break;
+    }
+}
+
+if (false === $loaded) {
+    exit(
+        'You need to set up the project dependencies using the following commands:' . PHP_EOL .
+        'wget http://getcomposer.org/composer.phar' . PHP_EOL .
+        'php composer.phar install' . PHP_EOL
+    );
+}
+
+$command = new DensityCommand(
+    new DensityMeter(Defaults::PAGE_WIDTH),
+    new Finder,
+    Defaults::THRESHOLD
+);
+
+$application = new Application(Metadata::NAME, Metadata::VERSION);
+
+$application->add($command);
+
+$application
+    ->setDefaultCommand($command->getName())
+    ->run();

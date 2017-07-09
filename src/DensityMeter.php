@@ -15,7 +15,7 @@ final class DensityMeter
 
     /**
      * BaseDensityMeter constructor.
-     * @param $width
+     * @param int $width
      */
     public function __construct($width)
     {

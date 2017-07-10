@@ -28,8 +28,7 @@ if (false === $loaded) {
 
 $command = new DensityCommand(
     new DensityMeter(Defaults::PAGE_WIDTH),
-    new Finder,
-    Defaults::THRESHOLD
+    new Finder
 );
 
 $application = new Application(Metadata::NAME, Metadata::VERSION);

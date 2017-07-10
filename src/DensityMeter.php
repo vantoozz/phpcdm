@@ -37,6 +37,11 @@ final class DensityMeter
      */
     public function calculate($file)
     {
+
+        if (!file_exists($file)) {
+            throw new \RuntimeException('No such file: ' . $file);
+        }
+
         $handler = fopen($file, 'rb');
         if (!$handler) {
             throw new \RuntimeException('Cannot read file: ' . $file);
@@ -46,25 +51,28 @@ final class DensityMeter
         $lines = 0;
 
         while (($line = fgets($handler)) !== false) {
-            $chars += $this->charsCount($line);
+            $line = trim($line);
+
+            if (0 === stripos($line, 'use ')) {
+                continue;
+            }
+
+            $chars += mb_strlen(str_replace([' ', "\t"], '', $line));
             $lines++;
         }
 
-        return min(1.0, $chars / ($lines * $this->pageWidth));
-    }
+        $area = $lines * $this->pageWidth;
 
-    /**
-     * @param string $line
-     * @return int
-     */
-    private function charsCount($line)
-    {
-        $line = trim($line);
-
-        if (0 === stripos($line, 'use ')) {
-            return 0;
+        if (0 === $area) {
+            return 0.0;
         }
 
-        return mb_strlen(str_replace([' ', "\t"], '', $line));
+        $density = $chars / $area;
+
+        if (1 < $density) {
+            $density = 1.0;
+        }
+
+        return $density;
     }
 }

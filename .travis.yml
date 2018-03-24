@@ -17,9 +17,9 @@ before_script:
   - composer update --no-dev $PREFER_LOWEST
 
 script:
-  - composer validate --no-check-all --strict
   - mkdir -p build/logs
   - composer require phpunit/phpunit
+  - composer require mikey179/vfsStream
   - phpunit --coverage-text  --coverage-clover build/logs/clover.xml
 
 after_script:

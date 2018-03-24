@@ -12,6 +12,7 @@ $loaded = false;
 
 foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php'] as $file) {
     if (file_exists($file)) {
+        /** @noinspection PhpIncludeInspection */
         require_once $file;
         $loaded = true;
         break;
@@ -36,5 +37,5 @@ $application = new Application(Metadata::NAME, Metadata::VERSION);
 $application->add($command);
 
 $application
-    ->setDefaultCommand($command->getName())
+    ->setDefaultCommand($command->getName(), true)
     ->run();

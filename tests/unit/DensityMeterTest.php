@@ -18,6 +18,9 @@ final class DensityMeterTest extends TestCase
      */
     private $filesystem;
 
+    /**
+     *
+     */
     public function setUp()
     {
         $directory = [

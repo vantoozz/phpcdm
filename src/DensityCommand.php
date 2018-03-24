@@ -14,6 +14,7 @@ use Symfony\Component\Finder\Finder;
 /**
  * Class DensityCommand
  * @package Vantoozz\Density\Console
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 final class DensityCommand extends Command
 {
@@ -61,6 +62,13 @@ final class DensityCommand extends Command
                     ),
 
                     new InputOption(
+                        'non-zero-exit-on-violation',
+                        null,
+                        InputOption::VALUE_NONE | InputOption::VALUE_OPTIONAL,
+                        'Return a non zero exit code on violation'
+                    ),
+
+                    new InputOption(
                         'threshold',
                         'T',
                         InputOption::VALUE_OPTIONAL,
@@ -74,13 +82,6 @@ final class DensityCommand extends Command
                         InputOption::VALUE_OPTIONAL,
                         'Page width',
                         Defaults::PAGE_WIDTH
-                    ),
-
-                    new InputOption(
-                        'non-zero-exit-on-violation',
-                        null,
-                        InputOption::VALUE_NONE,
-                        'Return a non zero exit code on violation'
                     ),
                 ])
             );

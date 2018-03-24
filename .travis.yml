@@ -13,9 +13,11 @@ env:
     - PREFER_LOWEST=""
 
 before_script:
-  - composer install --no-dev $PREFER_LOWEST
+  - sed -i 's/"require-dev"/"do-not-install-this"/g' composer.json
+  - composer update --no-dev $PREFER_LOWEST
 
 script:
+  - composer validate --no-check-all --strict
   - mkdir -p build/logs
   - composer require phpunit/phpunit
   - phpunit --coverage-text  --coverage-clover build/logs/clover.xml

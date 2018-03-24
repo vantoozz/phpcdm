@@ -13,7 +13,7 @@ env:
     - PREFER_LOWEST=""
 
 before_script:
-  - composer update $PREFER_LOWEST
+  - composer update --no-dev $PREFER_LOWEST
 
 script:
   - composer validate --no-check-all --strict

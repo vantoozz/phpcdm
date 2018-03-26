@@ -1,10 +1,10 @@
 <?php
 
-namespace Vantoozz\Density\UnitTests;
+namespace Vantoozz\PHPCDM\UnitTests;
 
 /**
  * Class BadFileStream
- * @package Vantoozz\Density\UnitTests
+ * @package Vantoozz\PHPCDM\UnitTests
  */
 final class BadFileStream
 {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Vantoozz\Density\UnitTests;
+namespace Vantoozz\PHPCDM\UnitTests;
 
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
-use Vantoozz\Density\DensityMeter;
+use Vantoozz\PHPCDM\DensityMeter;
 
 /**
  * Class DensityMeterTest
- * @package Vantoozz\Density
+ * @package Vantoozz\PHPCDM
  */
 final class DensityMeterTest extends TestCase
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Vantoozz\Density\SystemTests;
+namespace Vantoozz\PHPCDM\SystemTests;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class DensityCommandTest
- * @package Vantoozz\Density\IntegrationTests
+ * @package Vantoozz\PHPCDM\IntegrationTests
  */
 class DensityRunnerTest extends TestCase
 {

@@ -32,17 +32,17 @@
   },
   "autoload": {
     "psr-4": {
-      "Vantoozz\\Density\\": [
+      "Vantoozz\\PHPCDM\\": [
         "src/"
       ]
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Vantoozz\\Density\\UnitTests\\": [
+      "Vantoozz\\PHPCDM\\UnitTests\\": [
         "tests/unit/"
       ],
-      "Vantoozz\\Density\\SystemTests\\": [
+      "Vantoozz\\PHPCDM\\SystemTests\\": [
         "tests/system/"
       ]
     }

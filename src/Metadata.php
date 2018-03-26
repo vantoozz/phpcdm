@@ -1,10 +1,10 @@
 <?php
 
-namespace Vantoozz\Density;
+namespace Vantoozz\PHPCDM;
 
 /**
  * Class Metadata
- * @package Vantoozz\Density
+ * @package Vantoozz\PHPCDM
  */
 abstract class Metadata
 {

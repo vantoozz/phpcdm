@@ -1,10 +1,10 @@
 <?php
 
-namespace Vantoozz\Density;
+namespace Vantoozz\PHPCDM;
 
 /**
  * Class BaseDensityMeter
- * @package Vantoozz\Density\DensityMeter
+ * @package Vantoozz\PHPCDM\DensityMeter
  */
 final class DensityMeter
 {

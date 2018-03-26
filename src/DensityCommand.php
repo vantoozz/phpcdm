@@ -1,6 +1,6 @@
 <?php
 
-namespace Vantoozz\Density;
+namespace Vantoozz\PHPCDM;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
@@ -13,7 +13,7 @@ use Symfony\Component\Finder\Finder;
 
 /**
  * Class DensityCommand
- * @package Vantoozz\Density\Console
+ * @package Vantoozz\PHPCDM\Console
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 final class DensityCommand extends Command

@@ -3,10 +3,10 @@
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Finder\Finder;
-use Vantoozz\Density\Defaults;
-use Vantoozz\Density\DensityCommand;
-use Vantoozz\Density\DensityMeter;
-use Vantoozz\Density\Metadata;
+use Vantoozz\PHPCDM\Defaults;
+use Vantoozz\PHPCDM\DensityCommand;
+use Vantoozz\PHPCDM\DensityMeter;
+use Vantoozz\PHPCDM\Metadata;
 
 $loaded = false;
 

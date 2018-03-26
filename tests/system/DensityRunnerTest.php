@@ -10,7 +10,6 @@ use PHPUnit\Framework\TestCase;
  */
 class DensityRunnerTest extends TestCase
 {
-
     /**
      * @var string
      */
@@ -32,7 +31,7 @@ class DensityRunnerTest extends TestCase
         $output = [];
         exec($this->command . ' 2>&1', $output);
         $output = trim(implode(' ', $output));
-        $this->assertRegexp('/Not enough arguments \(missing: "directories"\)/', $output);
+        $this->assertRegExp('/Not enough arguments \(missing: "directories"\)/', $output);
     }
 
     /**
@@ -43,7 +42,20 @@ class DensityRunnerTest extends TestCase
         $output = [];
         exec($this->command . ' analyze 2>&1', $output);
         $output = trim(implode(' ', $output));
-        $this->assertRegexp('/The "analyze" directory does not exist/', $output);
+        $this->assertRegExp('/The "analyze" directory does not exist/', $output);
     }
 
+    /**
+     * @test
+     */
+    public function in_returns_non_zero_exit_code()
+    {
+        $output = [];
+        $code = 0;
+        $directory = realpath(__DIR__ . '/../fixtures/one');
+        exec($this->command . $directory . ' --threshold=0.001 --non-zero-exit-on-violation 2>&1', $output, $code);
+        $output = trim(implode(' ', $output));
+        $this->assertRegExp('/One.php has density of 0\.058/', $output);
+        $this->assertSame(1, $code);
+    }
 }

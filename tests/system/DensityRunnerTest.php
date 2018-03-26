@@ -21,7 +21,7 @@ class DensityRunnerTest extends TestCase
      */
     public function setUp()
     {
-        $this->command = __DIR__ . '/../../bin/density ';
+        $this->command = __DIR__ . '/../../bin/phpcdm ';
     }
 
     /**

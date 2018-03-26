@@ -57,7 +57,7 @@
 		exit 1
 	fi
 
-./bin/phpcdm src --threshold=0.01 --non-zero-exit-on-violation
+./bin/phpcdm src --non-zero-exit-on-violation
 	if [ $? != 0 ]
 	then
 		echo "Decrease source code density"

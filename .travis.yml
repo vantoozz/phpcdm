@@ -25,7 +25,7 @@ script:
 after_script:
   - composer require satooshi/php-coveralls
   - composer require codacy/coverage
-  - vendor/bin/coveralls -v
+  - vendor/bin/php-coveralls -v
   - vendor/bin/codacycoverage clover build/logs/clover.xml
 
 notifications:

@@ -10,7 +10,7 @@
     }
   ],
   "bin": [
-    "bin/density"
+    "bin/phpcdm"
   ],
   "require": {
     "symfony/console": "~3.3|~4",

@@ -2,7 +2,7 @@
   "name": "vantoozz/phpcdm",
   "license": "MIT",
   "type": "library",
-  "description": "PHP source code density meter",
+  "description": "PHP Code Density Meter (PHPCDM)",
   "authors": [
     {
       "name": "Ivan Nikitin",

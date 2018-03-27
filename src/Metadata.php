@@ -9,5 +9,5 @@ namespace Vantoozz\PHPCDM;
 abstract class Metadata
 {
     const NAME = 'phpcdm';
-    const VERSION = '1.0.0-rc6';
+    const VERSION = '1.0.0-rc7';
 }

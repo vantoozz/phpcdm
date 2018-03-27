@@ -2,6 +2,8 @@
 <?php
 
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\ConsoleEvents;
+use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\Finder\Finder;
 use Vantoozz\PHPCDM\Defaults;
 use Vantoozz\PHPCDM\DensityCommand;
@@ -32,9 +34,17 @@ $command = new DensityCommand(
     new Finder
 );
 
+$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher;
+
+$dispatcher->addListener(ConsoleEvents::COMMAND, function (ConsoleCommandEvent $event) {
+    $event->getOutput()->writeln(PHP_EOL . Metadata::NAME . ' ' . Metadata::VERSION . ' by Ivan Nikitin' . PHP_EOL);
+});
+
 $application = new Application(Metadata::NAME, Metadata::VERSION);
 
 $application->add($command);
+
+$application->setDispatcher($dispatcher);
 
 $application
     ->setDefaultCommand($command->getName(), true)

@@ -14,7 +14,8 @@
   ],
   "require": {
     "symfony/console": "~3.3|~4",
-    "symfony/finder": "~3.3|~4"
+    "symfony/finder": "~3.3|~4",
+    "symfony/event-dispatcher": "~3.3|~4"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "~3",

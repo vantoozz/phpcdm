@@ -120,6 +120,11 @@ final class DensityCommand extends Command
             }
         }
 
+        if (!$failed) {
+            $output->writeln('<info>No density excesses found</info>');
+        }
+        $output->writeln('');
+
         if ($failed && $input->getOption('non-zero-exit-on-violation')) {
             return self::EXIT_CODE_FAILURE;
         }

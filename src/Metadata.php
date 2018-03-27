@@ -8,6 +8,6 @@ namespace Vantoozz\PHPCDM;
  */
 abstract class Metadata
 {
-    const NAME = 'php-density';
-    const VERSION = '0.0.1';
+    const NAME = 'phpcdm';
+    const VERSION = '1.0.0';
 }

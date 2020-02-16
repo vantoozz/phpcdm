@@ -2,8 +2,10 @@
 
 namespace Vantoozz\PHPCDM;
 
+use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
+use Symfony\Component\Console\Exception\LogicException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
@@ -23,7 +25,7 @@ final class DensityCommand extends Command
     const EXIT_CODE_FAILURE = 1;
 
     /**
-     * @var DensityMeter
+     * @var DensityMeterInterface
      */
     private $densityMeter;
 
@@ -34,11 +36,11 @@ final class DensityCommand extends Command
 
     /**
      * DensityCommand constructor.
-     * @param DensityMeter $densityMeter
+     * @param DensityMeterInterface $densityMeter
      * @param Finder $finder
-     * @throws \Symfony\Component\Console\Exception\LogicException
+     * @throws LogicException
      */
-    public function __construct(DensityMeter $densityMeter, Finder $finder)
+    public function __construct(DensityMeterInterface $densityMeter, Finder $finder)
     {
         parent::__construct();
         $this->densityMeter = $densityMeter;
@@ -46,7 +48,7 @@ final class DensityCommand extends Command
     }
 
     /**
-     * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     protected function configure()
     {
@@ -91,17 +93,14 @@ final class DensityCommand extends Command
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int
-     * @throws \RuntimeException
+     * @throws RuntimeException
      * @throws \InvalidArgumentException
-     * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
         $directories = $input->getArgument('directories');
-        if (!is_array($directories)) {
-            throw new InvalidArgumentException('Not enough arguments');
-        }
 
         $this->densityMeter->setPageWidth((int)$input->getOption('page-width'));
 

@@ -15,8 +15,7 @@
   "require": {
     "symfony/console": "^3.2|~4|~5",
     "symfony/finder": "~3|~4|~5",
-    "symfony/event-dispatcher": "~3|~4|~5",
-    "mikey179/vfsstream": "^1.6"
+    "symfony/event-dispatcher": "~3|~4|~5"
   },
   "require-dev": {
     "mikey179/vfsstream": "~1.6"

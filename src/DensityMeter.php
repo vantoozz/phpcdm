@@ -8,7 +8,7 @@ use RuntimeException;
  * Class DensityMeter
  * @package Vantoozz\PHPCDM
  */
-final class DensityMeter
+final class DensityMeter implements DensityMeterInterface
 {
 
     const SUPPRESS_INTENTION = '@SuppressWarnings(PHPCDM)';

@@ -1,3 +1,5 @@
+dist: trusty
+
 language: php
 
 php:
@@ -6,6 +8,8 @@ php:
   - 7.0
   - 7.1
   - 7.2
+  - 7.3
+  - 7.4
 
 env:
   matrix:
@@ -18,12 +22,12 @@ before_script:
 
 script:
   - mkdir -p build/logs
-  - composer require phpunit/phpunit
-  - composer require mikey179/vfsStream
-  - phpunit --coverage-text  --coverage-clover build/logs/clover.xml
+  - composer require phpunit/phpunit:"<8"
+  - composer require mikey179/vfsstream
+  - vendor/bin/phpunit --coverage-text  --coverage-clover build/logs/clover.xml
 
 after_script:
-  - composer require satooshi/php-coveralls
+  - composer require php-coveralls/php-coveralls
   - composer require codacy/coverage
   - vendor/bin/php-coveralls -v
   - vendor/bin/codacycoverage clover build/logs/clover.xml

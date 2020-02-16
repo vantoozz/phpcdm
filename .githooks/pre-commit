@@ -1,65 +1,20 @@
 #!/usr/bin/env bash
 
-./vendor/bin/parallel-lint --no-colors --exclude vendor --exclude .idea .
-	if [ $? != 0 ]
-	then
-		echo "Fix errors before commit."
-		exit 1
-	fi
-
-./vendor/bin/phpstan analyze src --level=1
-	if [ $? != 0 ]
-	then
-		echo "Fix errors before commit."
-		exit 1
-	fi
-
-./vendor/bin/phpmnd src --non-zero-exit-on-violation
-	if [ $? != 0 ]
-	then
-		echo "Avoid magic numbers usage."
-		exit 1
-	fi
-
-./vendor/bin/phpcs --standard=psr2 src
-	if [ $? != 0 ]
-	then
-		echo "Fix code style before commit."
-		echo "Try run ./vendor/bin/phpcbf --standard=psr2 src"
-		exit 1
-	fi
-
-./vendor/bin/phpdoccheck -d src
-	if [ $? != 0 ]
-	then
-		echo "Add docblocks before commit."
-		exit 1
-	fi
-
-./vendor/bin/phpcpd src
-	if [ $? != 0 ]
-	then
-		echo "Copy-paste detected"
-		exit 1
-	fi
-
-./vendor/bin/phpmd src text phpmd.xml
-	if [ $? != 0 ]
-	then
-		echo "Fix errors before commit."
-		exit 1
-	fi
-
-./vendor/bin/phpunit --testsuite=unit
-	if [ $? != 0 ]
-	then
-		echo "Fix tests before commit."
-		exit 1
-	fi
-
-./bin/phpcdm src --non-zero-exit-on-violation
-	if [ $? != 0 ]
-	then
-		echo "Decrease source code density"
-		exit 1
-	fi
+docker run --rm  -v "$(pwd)":/opt/project "$(docker build -q -f=docker/php.dockerfile .)" /bin/bash -c \
+  "php /root/.composer/vendor/bin/phpcs --standard=psr2 src \
+&& php /root/.composer/vendor/bin/phpunit\
+&& php /root/.composer/vendor/bin/phpmd src text phpmd.xml\
+&& php /root/.composer/vendor/bin/phpcpd src\
+&& php /root/.composer/vendor/bin/phpmnd src --non-zero-exit-on-violation\
+&& php /root/.composer/vendor/bin/phpdoccheck -d src\
+&& php /root/.composer/vendor/bin/phpcs --standard=psr2 src\
+&& php /root/.composer/vendor/bin/phpstan analyze src --level=1\
+&& php /opt/project/bin/phpcdm src --non-zero-exit-on-violation
+"
+if [ $? != 0 ]; then
+  echo "Fix errors before commit."
+  echo "Try run \
+  docker run --rm -v \"\$(pwd)\":/opt/project \"\$(docker build -q -f=docker/php.dockerfile .)\" \
+  php /root/.composer/vendor/bin/phpcbf --standard=psr2 src"
+  exit 1
+fi

@@ -2,12 +2,17 @@
 
 namespace Vantoozz\PHPCDM;
 
+use RuntimeException;
+
 /**
- * Class BaseDensityMeter
- * @package Vantoozz\PHPCDM\DensityMeter
+ * Class DensityMeter
+ * @package Vantoozz\PHPCDM
  */
 final class DensityMeter
 {
+
+    const SUPPRESS_INTENTION = '@SuppressWarnings(PHPCDM)';
+
     /**
      * @var int
      */
@@ -33,24 +38,27 @@ final class DensityMeter
     /**
      * @param string $file
      * @return float
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public function calculate($file)
     {
-
         if (!file_exists($file)) {
-            throw new \RuntimeException('No such file: ' . $file);
+            throw new RuntimeException('No such file: ' . $file);
         }
 
         $handler = fopen($file, 'rb');
         if (!$handler) {
-            throw new \RuntimeException('Cannot read file: ' . $file);
+            throw new RuntimeException('Cannot read file: ' . $file);
         }
 
         $chars = 0;
         $lines = 0;
 
         while (($line = fgets($handler)) !== false) {
+            if ($this->isSuppressIntentionLine($line)) {
+                return 0.0;
+            }
+
             $line = trim($line);
 
             if (0 === stripos($line, 'use ')) {
@@ -74,5 +82,14 @@ final class DensityMeter
         }
 
         return $density;
+    }
+
+    /**
+     * @param string $line
+     * @return bool
+     */
+    private function isSuppressIntentionLine($line)
+    {
+        return false !== stripos($line, self::SUPPRESS_INTENTION);
     }
 }

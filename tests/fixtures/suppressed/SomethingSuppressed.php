@@ -1,10 +1,13 @@
 <?php
 
-final class SomethingGreat
+/**
+ * @SuppressWarnings(PHPCDM)
+ */
+final class SomethingSuppressed
 {
     public function doSomethingGreat($entity, $property, $type, $refProperties, $update, $delete)
     {
-        $time = $this->startAction(" $type (" . implode(',', (array) $type) . ')');
+        $time = $this->startAction(" $type (" . implode(',', (array)$type) . ')');
         $this->createAction()->addExtraKey($entity, $entity, $property, $refProperties, $delete, $update)->execute();
         $this->finishAction($time);
         $this->createAction()->updateProperty($entity, $property, $type)->execute();
@@ -13,7 +16,7 @@ final class SomethingGreat
         }
         $this->createAction()->renameEntity($entity, $property)->execute();
         $this->finishAction($time);
-        $time = $this->startAction(" $type (" . implode(',', (array) $type) . ')');
+        $time = $this->startAction(" $type (" . implode(',', (array)$type) . ')');
         $this->createAction()->addExtraKey($entity, $entity, $property, $refProperties, $delete, $update)->execute();
         if ($type instanceof InvalidArgumentException && $type->getMessage() !== $delete) {
             $this->finishAction($time);

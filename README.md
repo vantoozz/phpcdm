@@ -54,11 +54,24 @@ The example code has density of 0.381 which is far above the default threshold (
 
 
 ## Installation
-
 You can add this tool as a local, per-project, development-time dependency to your project using [Composer](https://getcomposer.org/):
 
 ```bash
 composer require --dev vantoozz/phpcdm
 ```
 
-You can then invoke it using the `vendor/bin/phpcdm` executable.
+Also, PHPCDM may be installed globally like this:
+```bash
+composer global require --dev vantoozz/phpcdm
+```
+
+## Running
+Analyzing the `src` directory
+```bash
+ ./vendor/bin/phpcdm src
+```
+
+Exiting with an error code
+```bash
+ ./vendor/bin/phpcdm src --non-zero-exit-on-violation
+```
